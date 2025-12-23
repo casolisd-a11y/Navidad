@@ -2,46 +2,76 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Feliz Navidad</title>
 
 <style>
+:root {
+  --rojo: #8b0000;
+  --rojo-claro: #ff4d4d;
+}
+
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
-  height: 100vh;
-  background: linear-gradient(135deg, #8b0000, #ff4d4d);
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--rojo), var(--rojo-claro));
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
   overflow: hidden;
+  padding: 16px;
 }
 
+/* 🎄 TARJETA */
 .card {
-  background: white;
-  padding: 30px;
-  border-radius: 20px;
+  background: #ffffff;
+  padding: 28px 22px;
+  border-radius: 22px;
   text-align: center;
-  max-width: 90%;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  max-width: 420px;
+  width: 100%;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.25);
   z-index: 2;
 }
 
-h1 {
-  color: #8b0000;
+/* 🎄 TÍTULO */
+.card h1 {
+  margin-top: 0;
+  margin-bottom: 16px;
+  font-size: 26px;
+  color: var(--rojo);
 }
 
-p {
-  font-size: 18px;
-  line-height: 1.5;
+/* 🎄 TEXTO */
+.card p {
+  font-size: 17px;
+  line-height: 1.6;
+  margin: 0;
+  color: #333;
+  white-space: pre-line;
 }
 
-/* ❄️ NIEVE ❄️ */
+/* 🎁 FIRMA */
+.footer {
+  margin-top: 18px;
+  font-size: 20px;
+}
+
+/* ❄️ NIEVE */
 .snowflake {
   position: fixed;
   top: -10px;
-  color: white;
-  font-size: 1.5em;
-  animation: fall linear infinite;
+  color: rgba(255,255,255,0.9);
+  user-select: none;
+  pointer-events: none;
+  animation-name: fall;
+  animation-timing-function: linear;
   z-index: 1;
 }
 
@@ -50,35 +80,52 @@ p {
     transform: translateY(110vh);
   }
 }
+
+/* 📱 AJUSTES EXTRA PARA CELULARES PEQUEÑOS */
+@media (max-width: 360px) {
+  .card h1 {
+    font-size: 22px;
+  }
+  .card p {
+    font-size: 16px;
+  }
+}
 </style>
 </head>
 
 <body>
 
 <div class="card">
-  <h1>🎄 ¡Feliz Navidad! 🎄</h1>
+  <h1>🎄✨ ¡Feliz Navidad! ✨🎄</h1>
+
   <p>
-    Que esta Navidad llene tu vida de paz,<br>
-    amor y momentos inolvidables.<br><br>
-    Que el nuevo año llegue con salud,<br>
-    esperanza y muchos sueños cumplidos ✨
+Que esta Navidad llene tu hogar de paz,
+tu corazón de amor y tus días de esperanza.
+Que el próximo año llegue con nuevas oportunidades,
+salud, alegría y muchos sueños cumplidos.
+
+🎁🌟 ¡Mis mejores deseos para ti y tu familia! 🌟🎁
   </p>
-  🎁🌟
+
+  <div class="footer">❄️✨</div>
 </div>
 
 <script>
-const snowflakes = 40;
+const cantidadNieve = 30; // optimizado para celular
 
-for (let i = 0; i < snowflakes; i++) {
-  let snow = document.createElement("div");
-  snow.innerHTML = "❄";
+for (let i = 0; i < cantidadNieve; i++) {
+  const snow = document.createElement("div");
   snow.className = "snowflake";
+  snow.innerHTML = "❄";
   snow.style.left = Math.random() * 100 + "vw";
-  snow.style.animationDuration = (3 + Math.random() * 5) + "s";
-  snow.style.fontSize = (12 + Math.random() * 20) + "px";
+  snow.style.fontSize = (12 + Math.random() * 18) + "px";
+  snow.style.animationDuration = (5 + Math.random() * 5) + "s";
+  snow.style.animationDelay = Math.random() * 5 + "s";
   document.body.appendChild(snow);
 }
 </script>
 
 </body>
 </html>
+
+
